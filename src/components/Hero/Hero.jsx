@@ -9,17 +9,13 @@ import TextField from "@mui/material/TextField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "@mui/material/Avatar";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
-import classes from "./ContainedInput.module.css";
 import useCurrency from "../../hooks/useCurrency";
 import { PuffLoader } from "react-spinners";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { getCharges } from "../../api/api";
+import { useMutation, useQueryClient } from "react-query";
+import { toast } from "react-toastify";
 
 const currencies = [
   {
@@ -33,8 +29,16 @@ const Hero = () => {
   const [code, setCode] = useState("");
   const [code2, setCode2] = useState("");
   const [amountPay, setAmountPay] = useState("");
+  const [amountReceived, setAmountReceived] = useState("");
   const [currencyPay, setCurrencyPay] = useState("");
   const [currencyReceived, setCurrencyReceived] = useState("");
+  const [charges, setCharges] = useState();
+
+  const handleChargesSuccess = () => {
+    toast.success("Success", {
+      position: "bottom-right",
+    });
+  };
 
   const handleChangeCurrencyPay = (event) => {
     setCurrencyPay(event.target.value);
@@ -47,15 +51,45 @@ const Hero = () => {
   };
 
   const handleChangeAmountPay = (event) => {
-    setAmountPay(event.target.value)
+    setAmountPay(event.target.value);
   };
 
-  const handleSubmit = e => {
+  const queryClient = useQueryClient();
+
+  const useCharge = () => {
+    queryClient.setMutationDefaults(["getRate"], {
+      mutationFn: (data) => getCharges(data),
+      onMutate: async (variables) => {
+        const { successCb, errorCb } = variables;
+        return { successCb, errorCb };
+      },
+      onSuccess: (result, variables, context) => {
+        setAmountReceived(result?.amount_received);
+        setCharges(result?.charge);
+        if (context.successCb) {
+          context.successCb(result);
+        }
+      },
+      onError: (error, variables, context) => {
+        if (context.errorCb) {
+          context.errorCb(error);
+        }
+      },
+    });
+    return useMutation(["getRate"]);
+  };
+
+  const addCharges = useCharge();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(code);
-    console.log(code2);
-    console.log(amountPay)
-};
+    const data = {
+      sending_currency: currencyPay,
+      receiving_currency: currencyReceived,
+      amount: amountPay,
+    };
+    addCharges.mutate(data);
+  };
 
   return (
     <section className="hero-wrapper">
@@ -116,7 +150,7 @@ const Hero = () => {
               </h2>
             </div>
             <div className="hero-exchangeRateForm">
-              <form   onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 {isLoading ? (
                   <div
                     className="wrapper flexCenter"
@@ -147,6 +181,7 @@ const Hero = () => {
                             You Pay
                           </InputLabel>
                           <Input
+                            style={{ fontWeight: 600 }}
                             required
                             id="standard-adornment-amount"
                             margin="normal"
@@ -154,25 +189,49 @@ const Hero = () => {
                             onChange={handleChangeAmountPay}
                             endAdornment={
                               <InputAdornment position="end">
-                                {code}
+                                <span
+                                  style={{ fontWeight: 400, color: "#000" }}
+                                >
+                                  {" "}
+                                  {code}{" "}
+                                </span>
                               </InputAdornment>
                             }
                             startAdornment={
                               <InputAdornment position="start">
-                                $
+                                <span
+                                  style={{ fontWeight: 400, color: "#000" }}
+                                >
+                                  $
+                                </span>
                               </InputAdornment>
                             }
                           />
                         </FormControl>
 
+                        {/* <FormControl
+                          sx={{ m: 2, width: "5ch" }}
+                          variant="standard"
+                          style={{ marginTop: 45 }}
+                          color="primary"
+                          focused
+                        >
+                          <Avatar
+                            sx={{ width: "5ch" }}
+                            src="./R.png"
+                            variant="square"
+                          ></Avatar>
+                        </FormControl> */}
+
                         <FormControl
-                          sx={{ m: 1, width: "7ch" }}
+                          sx={{ m: 1, width: "4ch" }}
                           variant="standard"
                           style={{ marginTop: 46 }}
                           color="primary"
                           focused
                         >
                           <Select
+                            style={{ color: "#fff" }}
                             required
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
@@ -190,20 +249,6 @@ const Hero = () => {
                         </FormControl>
 
                         <FormControl
-                          sx={{ m: 1, width: "5ch" }}
-                          variant="standard"
-                          style={{ marginTop: 45 }}
-                          color="primary"
-                          focused
-                        >
-                          <Avatar
-                            sx={{ width: "5ch" }}
-                            src="./R.png"
-                            variant="square"
-                          ></Avatar>
-                        </FormControl>
-
-                        <FormControl
                           sx={{ m: 0, width: "18ch" }}
                           variant="standard"
                           style={{ marginTop: 40 }}
@@ -213,31 +258,58 @@ const Hero = () => {
                           <InputLabel htmlFor="standard-adornment-amount">
                             They Receive
                           </InputLabel>
+
                           <Input
-                            placeholder="Enter amount"
+                            style={{ fontWeight: 600 }}
                             id="standard-adornment-amount"
                             margin="normal"
+                            value={amountReceived}
+                            placeholder="Enter amount"
                             endAdornment={
                               <InputAdornment position="end">
-                                {code2}
+                                <span
+                                  style={{ fontWeight: 400, color: "#000" }}
+                                >
+                                  {" "}
+                                  {code2}{" "}
+                                </span>
                               </InputAdornment>
                             }
                             startAdornment={
                               <InputAdornment position="start">
-                                $
+                                <span
+                                  style={{ fontWeight: 400, color: "#000" }}
+                                >
+                                  $
+                                </span>
                               </InputAdornment>
                             }
                           />
                         </FormControl>
 
+                        {/* <FormControl
+                          sx={{ m: 2, width: "5ch" }}
+                          variant="standard"
+                          style={{ marginTop: 55 }}
+                          color="primary"
+                          focused
+                        >
+                          <Avatar
+                            sx={{ width: "5ch" }}
+                            src="./R.png"
+                            variant="square"
+                          ></Avatar>
+                        </FormControl> */}
+
                         <FormControl
-                          sx={{ m: 1, width: "7ch" }}
+                          sx={{ m: 1, width: "4ch" }}
                           variant="standard"
                           style={{ marginTop: 56 }}
                           color="primary"
                           focused
                         >
                           <Select
+                            style={{ color: "#fff" }}
                             required
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
@@ -254,24 +326,10 @@ const Hero = () => {
                           </Select>
                         </FormControl>
 
-                        <FormControl
-                          sx={{ m: 1, width: "5ch" }}
-                          variant="standard"
-                          style={{ marginTop: 55 }}
-                          color="primary"
-                          focused
-                        >
-                          <Avatar
-                            sx={{ width: "5ch" }}
-                            src="./R.png"
-                            variant="square"
-                          ></Avatar>
-                        </FormControl>
-
                         <TextField
                           focused
                           color="primary"
-                          style={{ marginTop: 40 }}
+                          style={{ marginTop: 40, fontWeight: 600 }}
                           id="standard-select-currency-native"
                           select
                           label="Receive method"
@@ -296,6 +354,20 @@ const Hero = () => {
                         >
                           Calculate <i className="fa fa-user"></i>
                         </button>
+
+                        {charges && (
+                          <FormControl
+                            sx={{ m: 0, width: "100%",alignItems: "center" }}
+                            variant="standard"
+                            style={{ marginTop: 50 }}
+                            color="primary"
+                            focused
+                          >
+                            <InputLabel htmlFor="standard-adornment-amount">
+                            Charge: ${charges} (Included in pay amount above)
+                            </InputLabel>
+                          </FormControl>
+                        )}
                       </>
                     )}
                   </>

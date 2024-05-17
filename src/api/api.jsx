@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const api = axios.create({
-  baseURL: "http://ec2-51-20-64-65.eu-north-1.compute.amazonaws.com/api/v1",
+  baseURL: "https://moozacash.com/api/v1",
 });
 
 export const authLogin = async () => {
@@ -44,15 +44,12 @@ export const getCurrencies = async () => {
   }
 };
 
-export const getCharges = async (amountPay, currencyPay, currencyReceived) => {
+export const getCharges = async (data) => {
+  console.log(data)
   try {
-    await api.post(
-      `rates/convert/`,
-      {
-        currency_a: 2,
-        currency_b: 1,
-        amount: "20",
-      },
+    const response = await api.post(
+      `/conversions/`,
+      data,
       {
         headers: {
           "X-CSRFToken":
@@ -61,8 +58,13 @@ export const getCharges = async (amountPay, currencyPay, currencyReceived) => {
         },
       }
     );
+    console.log(response)
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+    return response.data;
   } catch (error) {
-    toast.error("Something went wrong, Please try again");
+    toast.error("Exchanging currency not allowed");
     throw error;
   }
 };
