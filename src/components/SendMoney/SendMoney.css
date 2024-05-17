@@ -1,0 +1,171 @@
+.hero-wrapper_ {
+    /* color: white; */
+    position: relative;
+    z-index: 1;
+    padding-bottom: 2rem;
+    color: #2949c6;
+    gap: 1.5rem;
+    background-image: url("./sending.jpg");
+    background-color: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0px;
+    border: 0px solid #5d77d6;
+    text-align: center;
+    height: 700px;
+  }
+  
+  
+  .hero-container_ {
+    justify-content: space-around;
+    align-items: flex-end; 
+  }
+  
+  
+  /* left side */
+  .hero-left_ {
+    gap: 3rem;
+  }
+  .hero-title_ {
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-title_ > h1 {
+    font-weight: 800;
+    font-size: 2.8rem;
+    line-height: 4rem;
+  }
+  .orange-circle_ {
+    height: 4rem;
+    width: 4rem;
+    background: var(--orange-gradient);
+    border-radius: 999px;
+    position: absolute;
+    right: 28%;
+    top: -10%;
+    z-index: -1;
+  }
+  .search-bar_ {
+    background-color: white;
+    border-radius: 5px;
+    border: 3px solid rgba(120, 120, 120, 0.374);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .search-bar > input {
+    border: none;
+    outline: none;
+  }
+  .stats{
+      width: 100%;
+      justify-content: space-between;
+  }
+  .stat>:nth-child(1)
+  {
+      font-size: 2rem;
+  }
+  .stat>:nth-child(1)>:last-child{
+      color: orange;
+  }
+  /* right side */
+  
+  .image-container {
+    padding: 0;
+    background-color: white;
+    width: 25rem;
+    height: 35rem;
+    overflow: hidden;
+    border-radius: 1rem 1rem 1rem 1rem;
+    border: 0px solid rgba(255, 255, 255, 0.12);
+  }
+  .image-container>img{
+      width: 100%;
+      height: 100%;
+  }
+  
+  /* mobile screens */
+  @media  (max-width: 640px){
+    .hero-container{
+      margin-top: 2rem;
+    }
+    .hero-title>h1{
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+    .image-container{
+      width: 95%;
+      height: 25rem;
+    }
+    .stats{
+      justify-content: center;
+      gap: 1.5rem;
+      font-weight: wrap;
+    }
+    .stat>:nth-child(1){
+      font-size: 1.5rem;
+    }
+    .stat>:nth-child(2)
+    {
+      font-size: 0.8rem;
+    }
+  }
+  .exchangeRate{
+    height: 70px;
+    width: "100%";
+    background: linear-gradient(97.05deg,  #3c57c2 3.76%,#4066ff  100%);
+  }
+  .exchangeRateForm{
+    padding:   0px 30px  0px 30px
+  }.exchangeRateTitle{
+    text-align: center;
+  
+  }
+
+  .r-container {
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .r-head{
+    margin-bottom: 2rem;
+  }
+  
+  .swiper-horizontal{
+    overflow: visible;
+  }
+  .r-buttons{
+    position: absolute;
+    gap: 1rem;
+    top: -4rem;
+    right: 0;
+  }
+  .r-buttons button{
+    font-size: 1.2rem;
+    padding: .2rem .8rem;
+    color: blue;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+  }
+  .r-buttons>:nth-child(1)
+  {
+    background-color: #EEEEFF;
+  }
+  .r-buttons>:nth-child(2)
+  {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+  }
+  
+  
+  @media (max-width: 640px) {
+    .r-head{
+    align-items: center;
+    }
+    .r-buttons{
+      position: initial;
+    }
+  }

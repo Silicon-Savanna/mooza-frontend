@@ -1,0 +1,93 @@
+.faq-c-container {
+    justify-content: space-between;
+  }
+  .faq-c-container > div {
+    flex: 1;
+  }
+  .faq-c-right {
+    width: 100%;
+  }
+  .faq-c-left {
+    gap: 0.5rem;
+  }
+  .faq-contactModes {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  .faq-contactModes .row {
+    gap: 1.5rem;
+  }
+  .faq-mode {
+    width: 77rem;
+    padding: 1rem;
+    border: 0.8px solid rgba(128, 128, 128, 0.143);
+    border-radius: 5px;
+    gap: 1rem;
+    height: 400px;
+    background-image: url("./contactUs.jpg");
+    background-color: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .faq-mode .button {
+    width: 100%;
+    background: var(--lightBlue);
+    color: var(--blue);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .faq-mode > :nth-child(1) {
+    width: 100%;
+    gap: 1.6rem;
+  }
+  .faq-mode .detail .primaryText {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+
+  .faq-mode .button:hover {
+    background: var(--blue-gradient);
+    color: white;
+    scale: 0.8;
+  }
+  
+  @media (max-width: 1024px) {
+    .faq-c-container {
+      flex-direction: column;
+    }
+    .faq-c-right {
+      justify-content: center;
+    }
+  }
+  @media (max-width: 1024px)
+  {
+      .faq-contactModes{
+          width: 100%;
+      }
+      .row{
+          flex-direction: column;
+          width: 100%;
+      }
+      .faq-mode{
+          width: 100%;
+      }
+      .fqa-accordion{
+        width: 100%;
+      }
+  }
+
+  @media (max-width: 640px)
+  {
+      .fqa-accordion{
+        width: 100%;
+      }
+  }
+ 
+ 
+  .contactUs{
+    background: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+  }
+  .faqPanel{
+    background-color: #ECECEE;
+  }
