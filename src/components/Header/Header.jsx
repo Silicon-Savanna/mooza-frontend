@@ -14,6 +14,7 @@ import { HoverCard } from "@mantine/core";
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
+
   let navigate = useNavigate();
 
   return (
@@ -36,8 +37,7 @@ const Header = () => {
           <div className="flexCenter h-menu" style={getMenuStyles(menuOpened)}>
             <a href="#" onClick={() => redirectToLink('https://wa.me/+263712887872')}>Send Money</a>
 
-            
-
+          
             <a href="#how-it-works" class="">
               How It Works
             </a>
@@ -60,7 +60,9 @@ const Header = () => {
               About Us
             </a>
 
-            <button className="button3">Login</button>
+            172.31.37.232
+
+            <button className="button3"  onClick={() => redirectToLink('http://172.31.37.232:3005')}>Login</button>
             <button className="button2">
               Sign Up <FontAwesomeIcon icon={faSignIn} />
             </button>

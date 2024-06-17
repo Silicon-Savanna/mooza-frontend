@@ -34,11 +34,6 @@ const Hero = () => {
   const [currencyReceived, setCurrencyReceived] = useState("");
   const [charges, setCharges] = useState();
 
-  const handleChargesSuccess = () => {
-    toast.success("Success", {
-      position: "bottom-right",
-    });
-  };
 
   const handleChangeCurrencyPay = (event) => {
     setCurrencyPay(event.target.value);
@@ -185,7 +180,6 @@ const Hero = () => {
                             required
                             id="standard-adornment-amount"
                             margin="normal"
-                            placeholder="Enter amount"
                             onChange={handleChangeAmountPay}
                             endAdornment={
                               <InputAdornment position="end">
@@ -264,7 +258,6 @@ const Hero = () => {
                             id="standard-adornment-amount"
                             margin="normal"
                             value={amountReceived}
-                            placeholder="Enter amount"
                             endAdornment={
                               <InputAdornment position="end">
                                 <span
