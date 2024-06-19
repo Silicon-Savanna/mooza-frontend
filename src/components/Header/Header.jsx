@@ -60,9 +60,8 @@ const Header = () => {
               About Us
             </a>
 
-            172.31.37.232
 
-            <button className="button3"  onClick={() => redirectToLink('http://172.31.37.232:3005')}>Login</button>
+            <button className="button3"  onClick={() => redirectToLink('http://16.170.103.42:3005')}>Login</button>
             <button className="button2">
               Sign Up <FontAwesomeIcon icon={faSignIn} />
             </button>
