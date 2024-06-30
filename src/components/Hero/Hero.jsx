@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { getCharges } from "../../api/api";
 import { useMutation, useQueryClient } from "react-query";
-import { toast } from "react-toastify";
+
 
 const currencies = [
   {
@@ -113,13 +113,13 @@ const Hero = () => {
               customer experience for its clients.
             </span>
             <span style={{ color: "#fff" }}>
-              As we grow MoozaCash Africa, it is has been refined to penetrate
-              the financial services market to the “last veins of toes”.
+              As we grow MoozaCash Africa, it has been refined to penetrate
+              the financial services market to the last veins of toes.
             </span>
           </div>
           <button
             style={{ width: "50%" }}
-            onClick={() => redirectToLink("https://wa.me/+263712887872")}
+            onClick={() => redirectToLink("https://wa.me/+263734324141")}
             className="button"
           >
             Send Money Now <FontAwesomeIcon icon={faArrowRightLong} />

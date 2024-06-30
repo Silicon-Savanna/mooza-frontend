@@ -5,13 +5,13 @@ import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 const data = [
   {
     icon: <HiShieldCheck />,
-    heading: "+263 712887872",
+    heading: "+263734324141",
     detail:
-      "WhatsApp MoozaCash Africa WhatsApp line +263887872. Send hi Mooza and follow the instructions.",
+      "WhatsApp MoozaCash Africa WhatsApp line +263734324141. Send hi Mooza and follow the instructions.",
     avater: <WhatsAppIcon />,
     textBtn: "Send now",
     title: 'WhatsApp "Hi" to',
-    link: "https://wa.me/+263712887872",
+    link: "https://wa.me/+263734324141",
   },
   {
     icon: <HiShieldCheck />,

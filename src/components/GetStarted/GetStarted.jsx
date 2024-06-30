@@ -21,7 +21,7 @@ const GetStarted = () => {
             </span>
 
             <div style={{ paddingLeft: 30 ,paddingTop: 15}}>
-              <button className="button5" onClick={() => redirectToLink('https://wa.me/+263712887872')} >
+              <button className="button5" onClick={() => redirectToLink('https://wa.me/+263734324141')} >
                send money now
               </button>
             </div>
