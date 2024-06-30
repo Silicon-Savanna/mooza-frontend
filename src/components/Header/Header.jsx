@@ -35,7 +35,7 @@ const Header = () => {
           }}
         >
           <div className="flexCenter h-menu" style={getMenuStyles(menuOpened)}>
-            <a href="#" onClick={() => redirectToLink('https://wa.me/+263734324141')}>Send Money</a>
+            <a  href="#send-money">Send Money</a>
 
           
             <a href="#how-it-works" class="">

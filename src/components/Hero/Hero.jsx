@@ -117,13 +117,13 @@ const Hero = () => {
               the financial services market to the last veins of toes.
             </span>
           </div>
-          <button
+          <a
             style={{ width: "50%" }}
-            onClick={() => redirectToLink("https://wa.me/+263734324141")}
+             href="#send-money"
             className="button"
           >
             Send Money Now <FontAwesomeIcon icon={faArrowRightLong} />
-          </button>
+          </a>
         </div>
 
         <div className="flexCenter hero-right" style={{ marginTop: "30px" }}>

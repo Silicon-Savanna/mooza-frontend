@@ -7,7 +7,7 @@ const ServiceCards = ({ card }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="r-card">
+      <div className="r-card" id="sendmoney">
         <div className="flexColCenter">
           <Avatar sx={{ width: 76, height: 76 }}>{card.avater}</Avatar>
           <p style={{ margin: 7 }}>{card.title}</p>
