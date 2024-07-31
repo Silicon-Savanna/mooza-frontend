@@ -56,15 +56,15 @@ const Header = () => {
               Contact US
             </a>
 
-            <a href="#about-us" class="">
+            <a href="#about-us" class="mr-4">
               About Us
             </a>
 
-
+{/* 
             <button className="button3">Login</button>
             <button className="button2">
               Sign Up <FontAwesomeIcon icon={faSignIn} />
-            </button>
+            </button> */}
           </div>
         </OutsideClickHandler>
 
